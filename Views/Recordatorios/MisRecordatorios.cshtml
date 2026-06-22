@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Mis_Recordatorios.Models.Recordatorio>
+
+<div class="d-flex justify-content-between align-items-center my-4">
+    <h2>Mis Recordatorios</h2>
+    <a asp-action="Crear" class="btn btn-primary">➕ Agregar Recordatorio</a>
+</div>
+
+<table class="table table-bordered table-striped align-middle">
+    <thead class="table-dark">
+        <tr>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Situación</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Titulo</td>
+                <td>@item.Descripcion</td>
+                <td>@item.FechaRecordatorio.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>
+                    <span class="badge @(item.Completado ? "bg-success" : "bg-warning text-dark")">
+                        @(item.Completado ? "Completado" : "Pendiente")
+                    </span>
+                </td>
+                <td>
+                    <strong>@item.Situacion</strong>
+                </td>
+                <td>
+                    @if (!item.Completado)
+                    {
+                        <form asp-action="MarcarComoCompletado" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button type="submit" class="btn btn-sm btn-success">✓ Completar</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Sin acciones</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

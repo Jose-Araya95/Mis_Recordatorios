@@ -1,0 +1,27 @@
+﻿@model Mis_Recordatorios.Models.Recordatorio
+
+<h2>Registrar Nuevo Recordatorio</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Crear" method="post">
+            <div class="form-group mb-3">
+                <label asp-for="Titulo" class="form-label">Título del Recordatorio</label>
+                <input asp-for="Titulo" class="form-control" required />
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Descripcion" class="form-label">Descripción (Opcional)</label>
+                <textarea asp-for="Descripcion" class="form-control" rows="3"></textarea>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="FechaRecordatorio" class="form-label">Fecha y Hora</label>
+                <input asp-for="FechaRecordatorio" type="datetime-local" class="form-control" required />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar Recordatorio</button>
+            <a asp-action="MisRecordatorios" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
